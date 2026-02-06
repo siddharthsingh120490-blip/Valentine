@@ -1,21 +1,25 @@
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Invitation</title>
+    <title>A Special Invitation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background-color: #ffeef2; font-family: sans-serif; overflow: hidden; text-align: center; margin: 0; }
-        h1 { color: #d63384; font-size: 28px; }
-        .buttons { margin-top: 20px; position: relative; width: 100%; height: 50px; }
-        button { padding: 15px 30px; font-size: 18px; cursor: pointer; border-radius: 10px; border: none; }
-        #yesBtn { background-color: #ff4d6d; color: white; position: relative; z-index: 10; }
-        #noBtn { background-color: #888; color: white; position: absolute; transition: 0.1s; }
-        img { border-radius: 15px; margin-bottom: 10px; }
+        body { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background-color: #ffeef2; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow: hidden; text-align: center; margin: 0; }
+        h1 { color: #d63384; margin: 20px; font-size: 2.5rem; }
+        .container { position: relative; width: 100%; max-width: 600px; height: 400px; }
+        .buttons { margin-top: 50px; display: flex; justify-content: center; gap: 20px; align-items: center; }
+        button { padding: 15px 35px; font-size: 20px; cursor: pointer; border-radius: 15px; border: none; transition: 0.2s; font-weight: bold; }
+        #yesBtn { background-color: #ff4d6d; color: white; box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4); }
+        #noBtn { background-color: #888; color: white; position: absolute; z-index: 999; }
+        img { border-radius: 20px; max-width: 80%; height: auto; }
     </style>
 </head>
 <body>
 
     <div id="main-content">
         <h1>Will you & Divi be my Valentine? ❤️</h1>
-        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHYyZzR0YXJ0Mnd4eGZ6eXN6eXN6eXN6eXN6eXN6eXN6eXN6eXN6ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" width="200">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHYyZzR0YXJ0Mnd4eGZ6eXN6eXN6eXN6eXN6eXN6eXN6eXN6eXN6ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Cute character">
+        
         <div class="buttons">
             <button id="yesBtn" onclick="showSuccess()">Yes</button>
             <button id="noBtn" onmouseover="moveNo()" onclick="moveNo()">No</button>
@@ -25,17 +29,25 @@
     <script>
         function moveNo() {
             const btn = document.getElementById('noBtn');
-            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
-            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
-            btn.style.left = x + 'px';
-            btn.style.top = y + 'px';
+            // Keeps the button inside the visible window area
+            const padding = 50;
+            const maxX = window.innerWidth - btn.offsetWidth - padding;
+            const maxY = window.innerHeight - btn.offsetHeight - padding;
+            
+            const randomX = Math.max(padding, Math.floor(Math.random() * maxX));
+            const randomY = Math.max(padding, Math.floor(Math.random() * maxY));
+            
+            btn.style.left = randomX + 'px';
+            btn.style.top = randomY + 'px';
         }
+
         function showSuccess() {
-            // YOU CAN CHANGE THE TEXT BELOW TO YOUR MESSAGE
             document.getElementById('main-content').innerHTML = `
-                <h1>Dhanyawad priye. Mere lakhte jigar. We are going on Valentine trip🥰</h1>
-                <p style="color: #d63384; font-size: 20px;">Put your custom message here!</p>
-                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWpueWpueWpueWpueWpueWpueWpueWpueWpueWpueWpueZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/K97pX7T5k3O2O/giphy.gif" width="200">
+                <h1>Yay! See you both on the 14th! Mere lakhte jigars 🥰</h1>
+                <p style="color: #d63384; font-size: 24px; font-weight: bold;">
+                    Can't wait to spend the day with my favorites!
+                </p>
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWpueWpueWpueWpueWpueWpueWpueWpueWpueWpueWpueZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/K97pX7T5k3O2O/giphy.gif" width="250">
             `;
         }
     </script>
